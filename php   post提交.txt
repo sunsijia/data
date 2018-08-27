@@ -2,12 +2,12 @@ https://jingyan.baidu.com/article/fedf0737a07b4335ac89773a.html
 
 
 
-php½øĞĞpostÌá½» ²¢ÇÒ·µ»ØĞÅÏ¢
+phpè¿›è¡Œpostæäº¤ å¹¶ä¸”è¿”å›ä¿¡æ¯
 
-·½·¨/²½Öè
-ÊµÏÖµÄ·½·¨ÓĞÁ½ÖÖ
-1¡¢file_get_contents
-2¡¢curl_init
+æ–¹æ³•/æ­¥éª¤
+å®ç°çš„æ–¹æ³•æœ‰ä¸¤ç§
+1ã€file_get_contents
+2ã€curl_init
 function file_get_contents_post($url, $post) {
     $options = array(
         'http' => array(
@@ -21,24 +21,24 @@ function file_get_contents_post($url, $post) {
 }
 function HttpPost($url,$param)//
 {
-$ch = curl_init(); //³õÊ¼»¯curl
-curl_setopt($ch, CURLOPT_URL, $url);//ÉèÖÃÁ´½Ó
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//ÉèÖÃÊÇ·ñ·µ»ØĞÅÏ¢
-curl_setopt($ch, CURLOPT_POST, 1);//ÉèÖÃÎªPOST·½Ê½
-curl_setopt($ch, CURLOPT_POSTFIELDS, $param);//POSTÊı¾İ
-$response = curl_exec($ch);//½ÓÊÕ·µ»ØĞÅÏ¢
-if(curl_errno($ch)){//³ö´íÔòÏÔÊ¾´íÎóĞÅÏ¢
+$ch = curl_init(); //åˆå§‹åŒ–curl
+curl_setopt($ch, CURLOPT_URL, $url);//è®¾ç½®é“¾æ¥
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//è®¾ç½®æ˜¯å¦è¿”å›ä¿¡æ¯
+curl_setopt($ch, CURLOPT_POST, 1);//è®¾ç½®ä¸ºPOSTæ–¹å¼
+curl_setopt($ch, CURLOPT_POSTFIELDS, $param);//POSTæ•°æ®
+$response = curl_exec($ch);//æ¥æ”¶è¿”å›ä¿¡æ¯
+if(curl_errno($ch)){//å‡ºé”™åˆ™æ˜¾ç¤ºé”™è¯¯ä¿¡æ¯
 print curl_error($ch);
 }
-curl_close($ch); //¹Ø±ÕcurlÁ´½Ó
-return $response;//ÏÔÊ¾·µ»ØĞÅÏ¢
+curl_close($ch); //å…³é—­curlé“¾æ¥
+return $response;//æ˜¾ç¤ºè¿”å›ä¿¡æ¯
 }
-4
-ÒıÓÃ
+
+å¼•ç”¨
 $data = file_get_contents_post("url", array('Id'=>'71529'));
 $data = HttpPost("url", array('Id'=>'71529'));
-ÆäÖĞ
-$data¾ÍÊÇ·µ»ØÖµ
+å…¶ä¸­
+$dataå°±æ˜¯è¿”å›å€¼
 
 
 
@@ -50,10 +50,10 @@ $data¾ÍÊÇ·µ»ØÖµ
 https://www.aimks.com/curl-simulation-post-to-submit-data-and-get-the-return.html
 
 
-PHPÄ£ÄâPOSTÌá½»Êı¾İ²¢»ñµÃ·µ»ØÖµÖ®CURL·½·¨
+PHPæ¨¡æ‹ŸPOSTæäº¤æ•°æ®å¹¶è·å¾—è¿”å›å€¼ä¹‹CURLæ–¹æ³•
 
-2016Äê8ÔÂ5ÈÕ MK PHP 0 ÔÄ¶Á 5208´Î
-PHP curl¿ÉÒÔ´Ó·şÎñÆ÷¶ËÄ£ÄâÒ»¸öhttpÇëÇó£¬ÀıÈç×¥È¡ÍøÒ³¡¢Ä£ÄâµÇÂ½µÈ¡£¸ù¾İÑ¡ÏîÉèÖÃ£¬¿ÉÒÔÔÚcurl_execµÄ·µ»Ø½á¹ûÖĞ»ñÈ¡µ½ÏìÓ¦Í·ºÍbody£¬µ«ÕâÃ»ÓĞÏìÓ¦µÄ×´Ì¬Âğ¡£ÏëÒª»ñÈ¡×´Ì¬Âë£¬ĞèÒªÔÚÖ´ĞĞcurl_execºóÔÙÍ¨¹ıcurl_getinfoÀ´»ñÈ¡¡£ÀıÈç£º
+2016å¹´8æœˆ5æ—¥ MK PHP 0 é˜…è¯» 5208æ¬¡
+PHP curlå¯ä»¥ä»æœåŠ¡å™¨ç«¯æ¨¡æ‹Ÿä¸€ä¸ªhttpè¯·æ±‚ï¼Œä¾‹å¦‚æŠ“å–ç½‘é¡µã€æ¨¡æ‹Ÿç™»é™†ç­‰ã€‚æ ¹æ®é€‰é¡¹è®¾ç½®ï¼Œå¯ä»¥åœ¨curl_execçš„è¿”å›ç»“æœä¸­è·å–åˆ°å“åº”å¤´å’Œbodyï¼Œä½†è¿™æ²¡æœ‰å“åº”çš„çŠ¶æ€å—ã€‚æƒ³è¦è·å–çŠ¶æ€ç ï¼Œéœ€è¦åœ¨æ‰§è¡Œcurl_execåå†é€šè¿‡curl_getinfoæ¥è·å–ã€‚ä¾‹å¦‚ï¼š
 
 1
 2
@@ -77,53 +77,53 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET'); 
 curl_exec($ch); 
 $httpCode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
-ÁíÍâcurl_getinfo»¹¿ÉÒÔ»ñÈ¡ºÜ¶àÆäËûĞÅÏ¢£¬¾ßÌåÇë²Î¿¼£ºhttp://php.net/manual/en/function.curl-getinfo.php ¡£
+å¦å¤–curl_getinfoè¿˜å¯ä»¥è·å–å¾ˆå¤šå…¶ä»–ä¿¡æ¯ï¼Œå…·ä½“è¯·å‚è€ƒï¼šhttp://php.net/manual/en/function.curl-getinfo.php ã€‚
 
-ÏÂÁĞÑ¡ÏîµÄÖµ½«±»×÷Îª³¤ÕûĞÎÊ¹ÓÃ(ÔÚoption²ÎÊıÖĞÖ¸¶¨)£º
+ä¸‹åˆ—é€‰é¡¹çš„å€¼å°†è¢«ä½œä¸ºé•¿æ•´å½¢ä½¿ç”¨(åœ¨optionå‚æ•°ä¸­æŒ‡å®š)ï¼š
 
-CURLOPT_INFILESIZE: µ±ÄãÉÏ´«Ò»¸öÎÄ¼şµ½Ô¶³ÌÕ¾µã£¬Õâ¸öÑ¡Ïî¸æËßPHPÄãÉÏ´«ÎÄ¼şµÄ´óĞ¡¡£
-CURLOPT_VERBOSE: Èç¹ûÄãÏëCURL±¨¸æÃ¿Ò»¼şÒâÍâµÄÊÂÇé£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ¡£
-CURLOPT_HEADER: Èç¹ûÄãÏë°ÑÒ»¸öÍ·°üº¬ÔÚÊä³öÖĞ£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ¡£
-CURLOPT_NOPROGRESS: Èç¹ûÄã²»»áPHPÎªCURL´«ÊäÏÔÊ¾Ò»¸ö½ø³ÌÌõ£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ¡£×¢Òâ£ºPHP×Ô¶¯ÉèÖÃÕâ¸öÑ¡ÏîÎª·ÇÁãÖµ£¬ÄãÓ¦¸Ã½ö½öÎªÁËµ÷ÊÔµÄÄ¿µÄÀ´¸Ä±äÕâ¸öÑ¡Ïî¡£
-CURLOPT_NOBODY: Èç¹ûÄã²»ÏëÔÚÊä³öÖĞ°üº¬body²¿·Ö£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ¡£
-CURLOPT_FAILONERROR: Èç¹ûÄãÏëÈÃPHPÔÚ·¢Éú´íÎó(HTTP´úÂë·µ»Ø´óÓÚµÈÓÚ300)Ê±£¬²»ÏÔÊ¾£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»ÈË·ÇÁãÖµ¡£Ä¬ÈÏĞĞÎªÊÇ·µ»ØÒ»¸öÕı³£Ò³£¬ºöÂÔ´úÂë¡£
-CURLOPT_UPLOAD: Èç¹ûÄãÏëÈÃPHPÎªÉÏ´«×ö×¼±¸£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ¡£
-CURLOPT_POST: Èç¹ûÄãÏëPHPÈ¥×öÒ»¸öÕı¹æµÄHTTP POST£¬ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ¡£Õâ¸öPOSTÊÇÆÕÍ¨µÄ application/x-www-from-urlencoded ÀàĞÍ£¬¶àÊı±»HTML±íµ¥Ê¹ÓÃ¡£
-CURLOPT_FTPLISTONLY: ÉèÖÃÕâ¸öÑ¡ÏîÎª·ÇÁãÖµ£¬PHP½«ÁĞ³öFTPµÄÄ¿Â¼ÃûÁĞ±í¡£
-CURLOPT_FTPAPPEND: ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ£¬PHP½«Ó¦ÓÃÔ¶³ÌÎÄ¼ş´úÌæ¸²¸ÇËü¡£
-CURLOPT_NETRC: ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ£¬PHP½«ÔÚÄãµÄ ~./netrc ÎÄ¼şÖĞ²éÕÒÄãÒª½¨Á¢Á¬½ÓµÄÔ¶³ÌÕ¾µãµÄÓÃ»§Ãû¼°ÃÜÂë¡£
-CURLOPT_FOLLOWLOCATION: ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ(Ïó ¡°Location: ¡°)µÄÍ·£¬·şÎñÆ÷»á°ÑËüµ±×öHTTPÍ·µÄÒ»²¿·Ö·¢ËÍ(×¢ÒâÕâÊÇµİ¹éµÄ£¬PHP½«·¢ËÍĞÎÈç ¡°Location: ¡°µÄÍ·)¡£
-CURLOPT_PUT: ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµÈ¥ÓÃHTTPÉÏ´«Ò»¸öÎÄ¼ş¡£ÒªÉÏ´«Õâ¸öÎÄ¼ş±ØĞëÉèÖÃCURLOPT_INFILEºÍCURLOPT_INFILESIZEÑ¡Ïî.
-CURLOPT_MUTE: ÉèÖÃÕâ¸öÑ¡ÏîÎªÒ»¸ö·ÇÁãÖµ£¬PHP¶ÔÓÚCURLº¯Êı½«ÍêÈ«³ÁÄ¬¡£
-CURLOPT_TIMEOUT: ÉèÖÃÒ»¸ö³¤ÕûĞÎÊı£¬×÷Îª×î´óÑÓĞø¶àÉÙÃë¡£
-CURLOPT_LOW_SPEED_LIMIT: ÉèÖÃÒ»¸ö³¤ÕûĞÎÊı£¬¿ØÖÆ´«ËÍ¶àÉÙ×Ö½Ú¡£
-CURLOPT_LOW_SPEED_TIME: ÉèÖÃÒ»¸ö³¤ÕûĞÎÊı£¬¿ØÖÆ¶àÉÙÃë´«ËÍCURLOPT_LOW_SPEED_LIMIT¹æ¶¨µÄ×Ö½ÚÊı¡£
-CURLOPT_RESUME_FROM: ´«µİÒ»¸ö°üº¬×Ö½ÚÆ«ÒÆµØÖ·µÄ³¤ÕûĞÎ²ÎÊı£¬(ÄãÏë×ªÒÆµ½µÄ¿ªÊ¼±íµ¥)¡£
-CURLOPT_SSLVERSION: ´«µİÒ»¸ö°üº¬SSL°æ±¾µÄ³¤²ÎÊı¡£Ä¬ÈÏPHP½«±»Ëü×Ô¼ºÅ¬Á¦µÄÈ·¶¨£¬ÔÚ¸ü¶àµÄ°²È«ÖĞÄã±ØĞëÊÖ¹¤ÉèÖÃ¡£
-CURLOPT_TIMECONDITION: ´«µİÒ»¸ö³¤²ÎÊı£¬Ö¸¶¨ÔõÃ´´¦ÀíCURLOPT_TIMEVALUE²ÎÊı¡£Äã¿ÉÒÔÉèÖÃÕâ¸ö²ÎÊıÎªTIMECOND_IFMODSINCE »ò TIMECOND_ISUNMODSINCE¡£Õâ½öÓÃÓÚHTTP¡£
-CURLOPT_TIMEVALUE: ´«µİÒ»¸ö´Ó1970-1-1¿ªÊ¼µ½ÏÖÔÚµÄÃëÊı¡£Õâ¸öÊ±¼ä½«±»CURLOPT_TIMEVALUEÑ¡Ïî×÷ÎªÖ¸¶¨ÖµÊ¹ÓÃ£¬»ò±»Ä¬ÈÏTIMECOND_IFMODSINCEÊ¹ÓÃ¡£
-ÏÂÁĞÑ¡ÏîµÄÖµ½«±»×÷Îª×Ö·û´®£º
-¡¡
+CURLOPT_INFILESIZE: å½“ä½ ä¸Šä¼ ä¸€ä¸ªæ–‡ä»¶åˆ°è¿œç¨‹ç«™ç‚¹ï¼Œè¿™ä¸ªé€‰é¡¹å‘Šè¯‰PHPä½ ä¸Šä¼ æ–‡ä»¶çš„å¤§å°ã€‚
+CURLOPT_VERBOSE: å¦‚æœä½ æƒ³CURLæŠ¥å‘Šæ¯ä¸€ä»¶æ„å¤–çš„äº‹æƒ…ï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ã€‚
+CURLOPT_HEADER: å¦‚æœä½ æƒ³æŠŠä¸€ä¸ªå¤´åŒ…å«åœ¨è¾“å‡ºä¸­ï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ã€‚
+CURLOPT_NOPROGRESS: å¦‚æœä½ ä¸ä¼šPHPä¸ºCURLä¼ è¾“æ˜¾ç¤ºä¸€ä¸ªè¿›ç¨‹æ¡ï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ã€‚æ³¨æ„ï¼šPHPè‡ªåŠ¨è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºéé›¶å€¼ï¼Œä½ åº”è¯¥ä»…ä»…ä¸ºäº†è°ƒè¯•çš„ç›®çš„æ¥æ”¹å˜è¿™ä¸ªé€‰é¡¹ã€‚
+CURLOPT_NOBODY: å¦‚æœä½ ä¸æƒ³åœ¨è¾“å‡ºä¸­åŒ…å«bodyéƒ¨åˆ†ï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ã€‚
+CURLOPT_FAILONERROR: å¦‚æœä½ æƒ³è®©PHPåœ¨å‘ç”Ÿé”™è¯¯(HTTPä»£ç è¿”å›å¤§äºç­‰äº300)æ—¶ï¼Œä¸æ˜¾ç¤ºï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€äººéé›¶å€¼ã€‚é»˜è®¤è¡Œä¸ºæ˜¯è¿”å›ä¸€ä¸ªæ­£å¸¸é¡µï¼Œå¿½ç•¥ä»£ç ã€‚
+CURLOPT_UPLOAD: å¦‚æœä½ æƒ³è®©PHPä¸ºä¸Šä¼ åšå‡†å¤‡ï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ã€‚
+CURLOPT_POST: å¦‚æœä½ æƒ³PHPå»åšä¸€ä¸ªæ­£è§„çš„HTTP POSTï¼Œè®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ã€‚è¿™ä¸ªPOSTæ˜¯æ™®é€šçš„ application/x-www-from-urlencoded ç±»å‹ï¼Œå¤šæ•°è¢«HTMLè¡¨å•ä½¿ç”¨ã€‚
+CURLOPT_FTPLISTONLY: è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºéé›¶å€¼ï¼ŒPHPå°†åˆ—å‡ºFTPçš„ç›®å½•ååˆ—è¡¨ã€‚
+CURLOPT_FTPAPPEND: è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ï¼ŒPHPå°†åº”ç”¨è¿œç¨‹æ–‡ä»¶ä»£æ›¿è¦†ç›–å®ƒã€‚
+CURLOPT_NETRC: è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ï¼ŒPHPå°†åœ¨ä½ çš„ ~./netrc æ–‡ä»¶ä¸­æŸ¥æ‰¾ä½ è¦å»ºç«‹è¿æ¥çš„è¿œç¨‹ç«™ç‚¹çš„ç”¨æˆ·ååŠå¯†ç ã€‚
+CURLOPT_FOLLOWLOCATION: è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼(è±¡ â€œLocation: â€œ)çš„å¤´ï¼ŒæœåŠ¡å™¨ä¼šæŠŠå®ƒå½“åšHTTPå¤´çš„ä¸€éƒ¨åˆ†å‘é€(æ³¨æ„è¿™æ˜¯é€’å½’çš„ï¼ŒPHPå°†å‘é€å½¢å¦‚ â€œLocation: â€œçš„å¤´)ã€‚
+CURLOPT_PUT: è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼å»ç”¨HTTPä¸Šä¼ ä¸€ä¸ªæ–‡ä»¶ã€‚è¦ä¸Šä¼ è¿™ä¸ªæ–‡ä»¶å¿…é¡»è®¾ç½®CURLOPT_INFILEå’ŒCURLOPT_INFILESIZEé€‰é¡¹.
+CURLOPT_MUTE: è®¾ç½®è¿™ä¸ªé€‰é¡¹ä¸ºä¸€ä¸ªéé›¶å€¼ï¼ŒPHPå¯¹äºCURLå‡½æ•°å°†å®Œå…¨æ²‰é»˜ã€‚
+CURLOPT_TIMEOUT: è®¾ç½®ä¸€ä¸ªé•¿æ•´å½¢æ•°ï¼Œä½œä¸ºæœ€å¤§å»¶ç»­å¤šå°‘ç§’ã€‚
+CURLOPT_LOW_SPEED_LIMIT: è®¾ç½®ä¸€ä¸ªé•¿æ•´å½¢æ•°ï¼Œæ§åˆ¶ä¼ é€å¤šå°‘å­—èŠ‚ã€‚
+CURLOPT_LOW_SPEED_TIME: è®¾ç½®ä¸€ä¸ªé•¿æ•´å½¢æ•°ï¼Œæ§åˆ¶å¤šå°‘ç§’ä¼ é€CURLOPT_LOW_SPEED_LIMITè§„å®šçš„å­—èŠ‚æ•°ã€‚
+CURLOPT_RESUME_FROM: ä¼ é€’ä¸€ä¸ªåŒ…å«å­—èŠ‚åç§»åœ°å€çš„é•¿æ•´å½¢å‚æ•°ï¼Œ(ä½ æƒ³è½¬ç§»åˆ°çš„å¼€å§‹è¡¨å•)ã€‚
+CURLOPT_SSLVERSION: ä¼ é€’ä¸€ä¸ªåŒ…å«SSLç‰ˆæœ¬çš„é•¿å‚æ•°ã€‚é»˜è®¤PHPå°†è¢«å®ƒè‡ªå·±åŠªåŠ›çš„ç¡®å®šï¼Œåœ¨æ›´å¤šçš„å®‰å…¨ä¸­ä½ å¿…é¡»æ‰‹å·¥è®¾ç½®ã€‚
+CURLOPT_TIMECONDITION: ä¼ é€’ä¸€ä¸ªé•¿å‚æ•°ï¼ŒæŒ‡å®šæ€ä¹ˆå¤„ç†CURLOPT_TIMEVALUEå‚æ•°ã€‚ä½ å¯ä»¥è®¾ç½®è¿™ä¸ªå‚æ•°ä¸ºTIMECOND_IFMODSINCE æˆ– TIMECOND_ISUNMODSINCEã€‚è¿™ä»…ç”¨äºHTTPã€‚
+CURLOPT_TIMEVALUE: ä¼ é€’ä¸€ä¸ªä»1970-1-1å¼€å§‹åˆ°ç°åœ¨çš„ç§’æ•°ã€‚è¿™ä¸ªæ—¶é—´å°†è¢«CURLOPT_TIMEVALUEé€‰é¡¹ä½œä¸ºæŒ‡å®šå€¼ä½¿ç”¨ï¼Œæˆ–è¢«é»˜è®¤TIMECOND_IFMODSINCEä½¿ç”¨ã€‚
+ä¸‹åˆ—é€‰é¡¹çš„å€¼å°†è¢«ä½œä¸ºå­—ç¬¦ä¸²ï¼š
+ã€€
 
-CURLOPT_URL: ÕâÊÇÄãÏëÓÃPHPÈ¡»ØµÄURLµØÖ·¡£ÄãÒ²¿ÉÒÔÔÚÓÃcurl_init()º¯Êı³õÊ¼»¯Ê±ÉèÖÃÕâ¸öÑ¡Ïî¡£
-CURLOPT_USERPWD: ´«µİÒ»¸öĞÎÈç[username]:[password]·ç¸ñµÄ×Ö·û´®,×÷ÓÃPHPÈ¥Á¬½Ó¡£
-CURLOPT_PROXYUSERPWD: ´«µİÒ»¸öĞÎÈç[username]:[password] ¸ñÊ½µÄ×Ö·û´®È¥Á¬½ÓHTTP´úÀí¡£
-CURLOPT_RANGE: ´«µİÒ»¸öÄãÏëÖ¸¶¨µÄ·¶Î§¡£ËüÓ¦¸ÃÊÇ¡±X-Y¡±¸ñÊ½£¬X»òYÊÇ±»³ıÍâµÄ¡£HTTP´«ËÍÍ¬ÑùÖ§³Ö¼¸¸ö¼ä¸ô£¬ÓÃ¶º¾äÀ´·Ö¸ô(X-Y,N-M)¡£
-CURLOPT_POSTFIELDS: ´«µİÒ»¸ö×÷ÎªHTTP ¡°POST¡±²Ù×÷µÄËùÓĞÊı¾İµÄ×Ö·û´®¡£
-CURLOPT_REFERER: ÔÚHTTPÇëÇóÖĞ°üº¬Ò»¸ö¡±referer¡±Í·µÄ×Ö·û´®¡£
-CURLOPT_USERAGENT: ÔÚHTTPÇëÇóÖĞ°üº¬Ò»¸ö¡±user-agent¡±Í·µÄ×Ö·û´®¡£
-CURLOPT_FTPPORT: ´«µİÒ»¸ö°üº¬±»ftp ¡°POST¡±Ö¸ÁîÊ¹ÓÃµÄIPµØÖ·¡£Õâ¸öPOSTÖ¸Áî¸æËßÔ¶³Ì·şÎñÆ÷È¥Á¬½ÓÎÒÃÇÖ¸¶¨µÄIPµØÖ·¡£Õâ¸ö×Ö·û´®¿ÉÒÔÊÇÒ»¸öIPµØÖ·£¬Ò»¸öÖ÷»úÃû£¬Ò»¸öÍøÂç½çÃæÃû(ÔÚUNIXÏÂ)£¬»òÊÇ¡®-¡®(Ê¹ÓÃÏµÍ³Ä¬ÈÏIPµØÖ·)¡£
-CURLOPT_COOKIE: ´«µİÒ»¸ö°üº¬HTTP cookieµÄÍ·Á¬½Ó¡£
-CURLOPT_SSLCERT: ´«µİÒ»¸ö°üº¬PEM¸ñÊ½Ö¤ÊéµÄ×Ö·û´®¡£
-CURLOPT_SSLCERTPASSWD: ´«µİÒ»¸ö°üº¬Ê¹ÓÃCURLOPT_SSLCERTÖ¤Êé±ØĞèµÄÃÜÂë¡£
-CURLOPT_COOKIEFILE: ´«µİÒ»¸ö°üº¬cookieÊı¾İµÄÎÄ¼şµÄÃû×ÖµÄ×Ö·û´®¡£Õâ¸öcookieÎÄ¼ş¿ÉÒÔÊÇNetscape¸ñÊ½£¬»òÊÇ¶Ñ´æÔÚÎÄ¼şÖĞµÄHTTP·ç¸ñµÄÍ·¡£
-CURLOPT_CUSTOMREQUEST: µ±½øĞĞHTTPÇëÇóÊ±£¬´«µİÒ»¸ö×Ö·û±»GET»òHEADÊ¹ÓÃ¡£Îª½øĞĞDELETE»òÆäËü²Ù×÷ÊÇÓĞÒæµÄ£¬¸üPass a string to be used instead of GET or HEAD when doing an HTTP request. This is useful for doing or another, more obscure, HTTP request. ×¢Òâ: ÔÚÈ·ÈÏÄãµÄ·şÎñÆ÷Ö§³ÖÃüÁîÏÈ²»ÒªÈ¥ÕâÑù×ö¡£ÏÂÁĞµÄÑ¡ÏîÒªÇóÒ»¸öÎÄ¼şÃèÊö(Í¨¹ıÊ¹ÓÃfopen()º¯Êı»ñµÃ)£º¡¡
-CURLOPT_FILE: Õâ¸öÎÄ¼ş½«ÊÇÄã·ÅÖÃ´«ËÍµÄÊä³öÎÄ¼ş£¬Ä¬ÈÏÊÇSTDOUT.
-CURLOPT_INFILE: Õâ¸öÎÄ¼şÊÇÄã´«ËÍ¹ıÀ´µÄÊäÈëÎÄ¼ş¡£
-CURLOPT_WRITEHEADER: Õâ¸öÎÄ¼şĞ´ÓĞÄãÊä³öµÄÍ·²¿·Ö¡£
-CURLOPT_STDERR: Õâ¸öÎÄ¼şĞ´ÓĞ´íÎó¶ø²»ÊÇstderr¡£ÓÃÀ´»ñÈ¡ĞèÒªµÇÂ¼µÄÒ³ÃæµÄÀı×Ó,µ±Ç°×ö·¨ÊÇÃ¿´Î»òĞí¶¼µÇÂ¼Ò»´Î,ÓĞĞèÒªµÄÈËÔÙ×ö¸Ä½øÁË.
+CURLOPT_URL: è¿™æ˜¯ä½ æƒ³ç”¨PHPå–å›çš„URLåœ°å€ã€‚ä½ ä¹Ÿå¯ä»¥åœ¨ç”¨curl_init()å‡½æ•°åˆå§‹åŒ–æ—¶è®¾ç½®è¿™ä¸ªé€‰é¡¹ã€‚
+CURLOPT_USERPWD: ä¼ é€’ä¸€ä¸ªå½¢å¦‚[username]:[password]é£æ ¼çš„å­—ç¬¦ä¸²,ä½œç”¨PHPå»è¿æ¥ã€‚
+CURLOPT_PROXYUSERPWD: ä¼ é€’ä¸€ä¸ªå½¢å¦‚[username]:[password] æ ¼å¼çš„å­—ç¬¦ä¸²å»è¿æ¥HTTPä»£ç†ã€‚
+CURLOPT_RANGE: ä¼ é€’ä¸€ä¸ªä½ æƒ³æŒ‡å®šçš„èŒƒå›´ã€‚å®ƒåº”è¯¥æ˜¯â€X-Yâ€æ ¼å¼ï¼ŒXæˆ–Yæ˜¯è¢«é™¤å¤–çš„ã€‚HTTPä¼ é€åŒæ ·æ”¯æŒå‡ ä¸ªé—´éš”ï¼Œç”¨é€—å¥æ¥åˆ†éš”(X-Y,N-M)ã€‚
+CURLOPT_POSTFIELDS: ä¼ é€’ä¸€ä¸ªä½œä¸ºHTTP â€œPOSTâ€æ“ä½œçš„æ‰€æœ‰æ•°æ®çš„å­—ç¬¦ä¸²ã€‚
+CURLOPT_REFERER: åœ¨HTTPè¯·æ±‚ä¸­åŒ…å«ä¸€ä¸ªâ€refererâ€å¤´çš„å­—ç¬¦ä¸²ã€‚
+CURLOPT_USERAGENT: åœ¨HTTPè¯·æ±‚ä¸­åŒ…å«ä¸€ä¸ªâ€user-agentâ€å¤´çš„å­—ç¬¦ä¸²ã€‚
+CURLOPT_FTPPORT: ä¼ é€’ä¸€ä¸ªåŒ…å«è¢«ftp â€œPOSTâ€æŒ‡ä»¤ä½¿ç”¨çš„IPåœ°å€ã€‚è¿™ä¸ªPOSTæŒ‡ä»¤å‘Šè¯‰è¿œç¨‹æœåŠ¡å™¨å»è¿æ¥æˆ‘ä»¬æŒ‡å®šçš„IPåœ°å€ã€‚è¿™ä¸ªå­—ç¬¦ä¸²å¯ä»¥æ˜¯ä¸€ä¸ªIPåœ°å€ï¼Œä¸€ä¸ªä¸»æœºåï¼Œä¸€ä¸ªç½‘ç»œç•Œé¢å(åœ¨UNIXä¸‹)ï¼Œæˆ–æ˜¯â€˜-â€˜(ä½¿ç”¨ç³»ç»Ÿé»˜è®¤IPåœ°å€)ã€‚
+CURLOPT_COOKIE: ä¼ é€’ä¸€ä¸ªåŒ…å«HTTP cookieçš„å¤´è¿æ¥ã€‚
+CURLOPT_SSLCERT: ä¼ é€’ä¸€ä¸ªåŒ…å«PEMæ ¼å¼è¯ä¹¦çš„å­—ç¬¦ä¸²ã€‚
+CURLOPT_SSLCERTPASSWD: ä¼ é€’ä¸€ä¸ªåŒ…å«ä½¿ç”¨CURLOPT_SSLCERTè¯ä¹¦å¿…éœ€çš„å¯†ç ã€‚
+CURLOPT_COOKIEFILE: ä¼ é€’ä¸€ä¸ªåŒ…å«cookieæ•°æ®çš„æ–‡ä»¶çš„åå­—çš„å­—ç¬¦ä¸²ã€‚è¿™ä¸ªcookieæ–‡ä»¶å¯ä»¥æ˜¯Netscapeæ ¼å¼ï¼Œæˆ–æ˜¯å †å­˜åœ¨æ–‡ä»¶ä¸­çš„HTTPé£æ ¼çš„å¤´ã€‚
+CURLOPT_CUSTOMREQUEST: å½“è¿›è¡ŒHTTPè¯·æ±‚æ—¶ï¼Œä¼ é€’ä¸€ä¸ªå­—ç¬¦è¢«GETæˆ–HEADä½¿ç”¨ã€‚ä¸ºè¿›è¡ŒDELETEæˆ–å…¶å®ƒæ“ä½œæ˜¯æœ‰ç›Šçš„ï¼Œæ›´Pass a string to be used instead of GET or HEAD when doing an HTTP request. This is useful for doing or another, more obscure, HTTP request. æ³¨æ„: åœ¨ç¡®è®¤ä½ çš„æœåŠ¡å™¨æ”¯æŒå‘½ä»¤å…ˆä¸è¦å»è¿™æ ·åšã€‚ä¸‹åˆ—çš„é€‰é¡¹è¦æ±‚ä¸€ä¸ªæ–‡ä»¶æè¿°(é€šè¿‡ä½¿ç”¨fopen()å‡½æ•°è·å¾—)ï¼šã€€
+CURLOPT_FILE: è¿™ä¸ªæ–‡ä»¶å°†æ˜¯ä½ æ”¾ç½®ä¼ é€çš„è¾“å‡ºæ–‡ä»¶ï¼Œé»˜è®¤æ˜¯STDOUT.
+CURLOPT_INFILE: è¿™ä¸ªæ–‡ä»¶æ˜¯ä½ ä¼ é€è¿‡æ¥çš„è¾“å…¥æ–‡ä»¶ã€‚
+CURLOPT_WRITEHEADER: è¿™ä¸ªæ–‡ä»¶å†™æœ‰ä½ è¾“å‡ºçš„å¤´éƒ¨åˆ†ã€‚
+CURLOPT_STDERR: è¿™ä¸ªæ–‡ä»¶å†™æœ‰é”™è¯¯è€Œä¸æ˜¯stderrã€‚ç”¨æ¥è·å–éœ€è¦ç™»å½•çš„é¡µé¢çš„ä¾‹å­,å½“å‰åšæ³•æ˜¯æ¯æ¬¡æˆ–è®¸éƒ½ç™»å½•ä¸€æ¬¡,æœ‰éœ€è¦çš„äººå†åšæ”¹è¿›äº†.
 
-×îºó·îÉÏÎÒÓÅ»¯¹ıµÄÒì²½postºÍgetÌá½»µÄº¯Êı¡£
+æœ€åå¥‰ä¸Šæˆ‘ä¼˜åŒ–è¿‡çš„å¼‚æ­¥postå’Œgetæäº¤çš„å‡½æ•°ã€‚
 
 1
 2
@@ -175,45 +175,45 @@ CURLOPT_STDERR: Õâ¸öÎÄ¼şĞ´ÓĞ´íÎó¶ø²»ÊÇstderr¡£ÓÃÀ´»ñÈ¡ĞèÒªµÇÂ¼µÄÒ³ÃæµÄÀı×Ó,µ±Ç°×
 48
 49
 /**
-         * ·¢ËÍcurlÇëÇó£¬²¢»ñÈ¡ÇëÇó½á¹û
-         * @param string ÇëÇóµØÖ·
-         * @param array Èç¹ûÊÇpostÇëÇóÔòĞèÒª´«ÈëÇëÇó²ÎÊı
-         * @param string ÇëÇó·½·¨£¬get »òÕß post£¬ Ä¬ÈÏÎªget
-         * @param bool ÊÇ·ñÒÔhttpsĞ­ÒéÇëÇó
+         * å‘é€curlè¯·æ±‚ï¼Œå¹¶è·å–è¯·æ±‚ç»“æœ
+         * @param string è¯·æ±‚åœ°å€
+         * @param array å¦‚æœæ˜¯postè¯·æ±‚åˆ™éœ€è¦ä¼ å…¥è¯·æ±‚å‚æ•°
+         * @param string è¯·æ±‚æ–¹æ³•ï¼Œget æˆ–è€… postï¼Œ é»˜è®¤ä¸ºget
+         * @param bool æ˜¯å¦ä»¥httpsåè®®è¯·æ±‚
          */
         private function send_request($request, $params, $method='get', $https=true)
         {
-                // ÒÔget·½Ê½Ìá½»
+                // ä»¥getæ–¹å¼æäº¤
                 if ($method == 'get') {
                         $request = $request . $this->create_url($params);
                 }
  
                 $this->ch = curl_init($request);
-                curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);// ÉèÖÃ²»ÏÔÊ¾½á¹û£¬´¢´æÈë±äÁ¿
-                curl_setopt($this->ch, CURLOPT_TIMEOUT, self::TIMEOUT); // ÉèÖÃ³¬Ê±ÏŞÖÆ·ÀÖ¹ËÀÑ­»·
+                curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);// è®¾ç½®ä¸æ˜¾ç¤ºç»“æœï¼Œå‚¨å­˜å…¥å˜é‡
+                curl_setopt($this->ch, CURLOPT_TIMEOUT, self::TIMEOUT); // è®¾ç½®è¶…æ—¶é™åˆ¶é˜²æ­¢æ­»å¾ªç¯
  
-                // ÅĞ¶ÏÊÇ·ñÒÔhttps·½Ê½·ÃÎÊ
+                // åˆ¤æ–­æ˜¯å¦ä»¥httpsæ–¹å¼è®¿é—®
                 if ($https) {
-                        curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0); // ¶ÔÈÏÖ¤Ö¤ÊéÀ´Ô´µÄ¼ì²é
-                        curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, 2); // ´ÓÖ¤ÊéÖĞ¼ì²éSSL¼ÓÃÜËã·¨ÊÇ·ñ´æÔÚ
+                        curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0); // å¯¹è®¤è¯è¯ä¹¦æ¥æºçš„æ£€æŸ¥
+                        curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, 2); // ä»è¯ä¹¦ä¸­æ£€æŸ¥SSLåŠ å¯†ç®—æ³•æ˜¯å¦å­˜åœ¨
                 }
  
-                if ($method == 'post') {        // ÒÔpost·½Ê½Ìá½»
-                        curl_setopt($this->ch, CURLOPT_POST, 1); // ·¢ËÍÒ»¸ö³£¹æµÄPostÇëÇó
-                        curl_setopt($this->ch, CURLOPT_POSTFIELDS, $params); // PostÌá½»µÄÊı¾İ°ü
+                if ($method == 'post') {        // ä»¥postæ–¹å¼æäº¤
+                        curl_setopt($this->ch, CURLOPT_POST, 1); // å‘é€ä¸€ä¸ªå¸¸è§„çš„Postè¯·æ±‚
+                        curl_setopt($this->ch, CURLOPT_POSTFIELDS, $params); // Postæäº¤çš„æ•°æ®åŒ…
                 }
  
-                $tmpInfo = curl_exec($this->ch); // Ö´ĞĞ²Ù×÷
+                $tmpInfo = curl_exec($this->ch); // æ‰§è¡Œæ“ä½œ
                 if (curl_errno($this->ch)) {
-                        echo 'Errno:'.curl_error($this->ch);//²¶×¥Òì³£
+                        echo 'Errno:'.curl_error($this->ch);//æ•æŠ“å¼‚å¸¸
                 }
-                curl_close($this->ch); // ¹Ø±ÕCURL»á»°
+                curl_close($this->ch); // å…³é—­CURLä¼šè¯
  
-                return $tmpInfo; // ·µ»ØÊı¾İ
+                return $tmpInfo; // è¿”å›æ•°æ®
         }
  
         /**
-         * Éú³Éurl
+         * ç”Ÿæˆurl
          */
         private function create_url($data)
         {
@@ -223,7 +223,7 @@ CURLOPT_STDERR: Õâ¸öÎÄ¼şĞ´ÓĞ´íÎó¶ø²»ÊÇstderr¡£ÓÃÀ´»ñÈ¡ĞèÒªµÇÂ¼µÄÒ³ÃæµÄÀı×Ó,µ±Ç°×
                 }
                 return substr($temp, 0, -1);
         }
-ÎÒµÄËùÓĞ³ÌĞò¶¼ÊÇÓÃµÄÕâÌ×´úÂë£¬·Ç³£ºÃÓÃ¡£
+æˆ‘çš„æ‰€æœ‰ç¨‹åºéƒ½æ˜¯ç”¨çš„è¿™å¥—ä»£ç ï¼Œéå¸¸å¥½ç”¨ã€‚
 
 
 
