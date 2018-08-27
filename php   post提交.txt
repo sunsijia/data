@@ -1,0 +1,275 @@
+https://jingyan.baidu.com/article/fedf0737a07b4335ac89773a.html
+
+
+
+php进行post提交 并且返回信息
+
+方法/步骤
+实现的方法有两种
+1、file_get_contents
+2、curl_init
+function file_get_contents_post($url, $post) {
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            // 'content' => 'name=caiknife&email=caiknife@gmail.com',
+            'content' => http_build_query($post),
+        ),
+    );
+    $result = file_get_contents($url, false, stream_context_create($options));
+    return $result;
+}
+function HttpPost($url,$param)//
+{
+$ch = curl_init(); //初始化curl
+curl_setopt($ch, CURLOPT_URL, $url);//设置链接
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//设置是否返回信息
+curl_setopt($ch, CURLOPT_POST, 1);//设置为POST方式
+curl_setopt($ch, CURLOPT_POSTFIELDS, $param);//POST数据
+$response = curl_exec($ch);//接收返回信息
+if(curl_errno($ch)){//出错则显示错误信息
+print curl_error($ch);
+}
+curl_close($ch); //关闭curl链接
+return $response;//显示返回信息
+}
+4
+引用
+$data = file_get_contents_post("url", array('Id'=>'71529'));
+$data = HttpPost("url", array('Id'=>'71529'));
+其中
+$data就是返回值
+
+
+
+
+
+
+
+
+https://www.aimks.com/curl-simulation-post-to-submit-data-and-get-the-return.html
+
+
+PHP模拟POST提交数据并获得返回值之CURL方法
+
+2016年8月5日 MK PHP 0 阅读 5208次
+PHP curl可以从服务器端模拟一个http请求，例如抓取网页、模拟登陆等。根据选项设置，可以在curl_exec的返回结果中获取到响应头和body，但这没有响应的状态吗。想要获取状态码，需要在执行curl_exec后再通过curl_getinfo来获取。例如：
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+$ch = curl_init (); 
+curl_setopt($ch, CURLOPT_URL, 'http://www.aimks.com'); 
+curl_setopt($ch, CURLOPT_TIMEOUT, 200); 
+curl_setopt($ch, CURLOPT_HEADER, FALSE); 
+curl_setopt($ch, CURLOPT_NOBODY, FALSE); 
+#curl_setopt( $ch, CURLOPT_POSTFIELDS, "username=".$username."&password=".$password ); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE); 
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET'); 
+curl_exec($ch); 
+$httpCode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+另外curl_getinfo还可以获取很多其他信息，具体请参考：http://php.net/manual/en/function.curl-getinfo.php 。
+
+下列选项的值将被作为长整形使用(在option参数中指定)：
+
+CURLOPT_INFILESIZE: 当你上传一个文件到远程站点，这个选项告诉PHP你上传文件的大小。
+CURLOPT_VERBOSE: 如果你想CURL报告每一件意外的事情，设置这个选项为一个非零值。
+CURLOPT_HEADER: 如果你想把一个头包含在输出中，设置这个选项为一个非零值。
+CURLOPT_NOPROGRESS: 如果你不会PHP为CURL传输显示一个进程条，设置这个选项为一个非零值。注意：PHP自动设置这个选项为非零值，你应该仅仅为了调试的目的来改变这个选项。
+CURLOPT_NOBODY: 如果你不想在输出中包含body部分，设置这个选项为一个非零值。
+CURLOPT_FAILONERROR: 如果你想让PHP在发生错误(HTTP代码返回大于等于300)时，不显示，设置这个选项为一人非零值。默认行为是返回一个正常页，忽略代码。
+CURLOPT_UPLOAD: 如果你想让PHP为上传做准备，设置这个选项为一个非零值。
+CURLOPT_POST: 如果你想PHP去做一个正规的HTTP POST，设置这个选项为一个非零值。这个POST是普通的 application/x-www-from-urlencoded 类型，多数被HTML表单使用。
+CURLOPT_FTPLISTONLY: 设置这个选项为非零值，PHP将列出FTP的目录名列表。
+CURLOPT_FTPAPPEND: 设置这个选项为一个非零值，PHP将应用远程文件代替覆盖它。
+CURLOPT_NETRC: 设置这个选项为一个非零值，PHP将在你的 ~./netrc 文件中查找你要建立连接的远程站点的用户名及密码。
+CURLOPT_FOLLOWLOCATION: 设置这个选项为一个非零值(象 “Location: “)的头，服务器会把它当做HTTP头的一部分发送(注意这是递归的，PHP将发送形如 “Location: “的头)。
+CURLOPT_PUT: 设置这个选项为一个非零值去用HTTP上传一个文件。要上传这个文件必须设置CURLOPT_INFILE和CURLOPT_INFILESIZE选项.
+CURLOPT_MUTE: 设置这个选项为一个非零值，PHP对于CURL函数将完全沉默。
+CURLOPT_TIMEOUT: 设置一个长整形数，作为最大延续多少秒。
+CURLOPT_LOW_SPEED_LIMIT: 设置一个长整形数，控制传送多少字节。
+CURLOPT_LOW_SPEED_TIME: 设置一个长整形数，控制多少秒传送CURLOPT_LOW_SPEED_LIMIT规定的字节数。
+CURLOPT_RESUME_FROM: 传递一个包含字节偏移地址的长整形参数，(你想转移到的开始表单)。
+CURLOPT_SSLVERSION: 传递一个包含SSL版本的长参数。默认PHP将被它自己努力的确定，在更多的安全中你必须手工设置。
+CURLOPT_TIMECONDITION: 传递一个长参数，指定怎么处理CURLOPT_TIMEVALUE参数。你可以设置这个参数为TIMECOND_IFMODSINCE 或 TIMECOND_ISUNMODSINCE。这仅用于HTTP。
+CURLOPT_TIMEVALUE: 传递一个从1970-1-1开始到现在的秒数。这个时间将被CURLOPT_TIMEVALUE选项作为指定值使用，或被默认TIMECOND_IFMODSINCE使用。
+下列选项的值将被作为字符串：
+　
+
+CURLOPT_URL: 这是你想用PHP取回的URL地址。你也可以在用curl_init()函数初始化时设置这个选项。
+CURLOPT_USERPWD: 传递一个形如[username]:[password]风格的字符串,作用PHP去连接。
+CURLOPT_PROXYUSERPWD: 传递一个形如[username]:[password] 格式的字符串去连接HTTP代理。
+CURLOPT_RANGE: 传递一个你想指定的范围。它应该是”X-Y”格式，X或Y是被除外的。HTTP传送同样支持几个间隔，用逗句来分隔(X-Y,N-M)。
+CURLOPT_POSTFIELDS: 传递一个作为HTTP “POST”操作的所有数据的字符串。
+CURLOPT_REFERER: 在HTTP请求中包含一个”referer”头的字符串。
+CURLOPT_USERAGENT: 在HTTP请求中包含一个”user-agent”头的字符串。
+CURLOPT_FTPPORT: 传递一个包含被ftp “POST”指令使用的IP地址。这个POST指令告诉远程服务器去连接我们指定的IP地址。这个字符串可以是一个IP地址，一个主机名，一个网络界面名(在UNIX下)，或是‘-‘(使用系统默认IP地址)。
+CURLOPT_COOKIE: 传递一个包含HTTP cookie的头连接。
+CURLOPT_SSLCERT: 传递一个包含PEM格式证书的字符串。
+CURLOPT_SSLCERTPASSWD: 传递一个包含使用CURLOPT_SSLCERT证书必需的密码。
+CURLOPT_COOKIEFILE: 传递一个包含cookie数据的文件的名字的字符串。这个cookie文件可以是Netscape格式，或是堆存在文件中的HTTP风格的头。
+CURLOPT_CUSTOMREQUEST: 当进行HTTP请求时，传递一个字符被GET或HEAD使用。为进行DELETE或其它操作是有益的，更Pass a string to be used instead of GET or HEAD when doing an HTTP request. This is useful for doing or another, more obscure, HTTP request. 注意: 在确认你的服务器支持命令先不要去这样做。下列的选项要求一个文件描述(通过使用fopen()函数获得)：　
+CURLOPT_FILE: 这个文件将是你放置传送的输出文件，默认是STDOUT.
+CURLOPT_INFILE: 这个文件是你传送过来的输入文件。
+CURLOPT_WRITEHEADER: 这个文件写有你输出的头部分。
+CURLOPT_STDERR: 这个文件写有错误而不是stderr。用来获取需要登录的页面的例子,当前做法是每次或许都登录一次,有需要的人再做改进了.
+
+最后奉上我优化过的异步post和get提交的函数。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+/**
+         * 发送curl请求，并获取请求结果
+         * @param string 请求地址
+         * @param array 如果是post请求则需要传入请求参数
+         * @param string 请求方法，get 或者 post， 默认为get
+         * @param bool 是否以https协议请求
+         */
+        private function send_request($request, $params, $method='get', $https=true)
+        {
+                // 以get方式提交
+                if ($method == 'get') {
+                        $request = $request . $this->create_url($params);
+                }
+ 
+                $this->ch = curl_init($request);
+                curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);// 设置不显示结果，储存入变量
+                curl_setopt($this->ch, CURLOPT_TIMEOUT, self::TIMEOUT); // 设置超时限制防止死循环
+ 
+                // 判断是否以https方式访问
+                if ($https) {
+                        curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0); // 对认证证书来源的检查
+                        curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, 2); // 从证书中检查SSL加密算法是否存在
+                }
+ 
+                if ($method == 'post') {        // 以post方式提交
+                        curl_setopt($this->ch, CURLOPT_POST, 1); // 发送一个常规的Post请求
+                        curl_setopt($this->ch, CURLOPT_POSTFIELDS, $params); // Post提交的数据包
+                }
+ 
+                $tmpInfo = curl_exec($this->ch); // 执行操作
+                if (curl_errno($this->ch)) {
+                        echo 'Errno:'.curl_error($this->ch);//捕抓异常
+                }
+                curl_close($this->ch); // 关闭CURL会话
+ 
+                return $tmpInfo; // 返回数据
+        }
+ 
+        /**
+         * 生成url
+         */
+        private function create_url($data)
+        {
+                $temp = '?';
+                foreach ($data as $key => $item) {
+                        $temp = $temp . $key . '=' . $item . '&';
+                }
+                return substr($temp, 0, -1);
+        }
+我的所有程序都是用的这套代码，非常好用。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$url = 'http://www.someapi.com/api';
+ 
+$body = '<?xml version="1.0" encoding="utf-8"?>
+<returndata>
+    <somexml></somexml>
+</returndata>';
+ 
+ 
+$result = api_notice_increment($url,$body);
+ 
+echo '<pre>';print_r($result);exit;
+ 
+function api_notice_increment($url, $data)
+{
+ 
+    $ch = curl_init();      
+ 
+    <span style="background-color: rgb(255, 255, 0);">curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/html", "Content-length: ".strlen($data))); </span>
+ 
+    curl_setopt($ch, CURLOPT_HEADER,0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+ 
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+ 
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    $lst['rst'] = curl_exec($ch);
+    $lst['info'] = curl_getinfo($ch);
+    curl_close($ch);
+    return $lst;
+}
